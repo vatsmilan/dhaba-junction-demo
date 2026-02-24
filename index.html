@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Dhaba Junction | Premium Dining in Karol Bagh</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         /* --- CORE STYLES & VARIABLES --- */
         :root {
@@ -20,6 +20,9 @@
         body { font-family: 'Poppins', system-ui, sans-serif; background-color: var(--brand-dark); color: var(--text-light); overflow-x: hidden;}
         a { text-decoration: none; }
         .section-title { text-align: center; font-size: 2.5rem; color: var(--brand-gold); margin-bottom: 40px; text-transform: uppercase; font-weight: 800;}
+
+        /* --- CATCHY RESTAURANT FONT --- */
+        .logo { font-family: 'Lobster', cursive; font-size: 2.2rem; font-weight: normal; color: var(--brand-gold); letter-spacing: 2px;}
 
         /* --- SLIDE SIDEBAR --- */
         .sidebar {
@@ -42,7 +45,6 @@
             border-bottom: 1px solid rgba(255,215,0,0.1); transition: all 0.3s ease;
         }
         .menu-trigger { font-size: 1.5rem; color: var(--brand-gold); cursor: pointer; display: none; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--brand-gold); text-transform: uppercase; letter-spacing: 2px;}
         .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a { color: white; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--brand-gold); }
@@ -51,6 +53,7 @@
             background: rgba(39, 174, 96, 0.2); color: #2ecc71;
             padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
             display: flex; align-items: center; gap: 5px; border: 1px solid #2ecc71;
+            font-family: 'Poppins', sans-serif;
         }
         .status-dot { width: 8px; height: 8px; background: #2ecc71; border-radius: 50%; animation: blink 1.5s infinite; }
         @keyframes blink { 0% {opacity: 1;} 50% {opacity: 0.3;} 100% {opacity: 1;} }
@@ -58,10 +61,11 @@
         /* --- PARALLAX HERO --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(to bottom, rgba(26,5,5,0.6), var(--brand-dark)), url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            /* Updated to cover.png */
+            background: linear-gradient(to bottom, rgba(26,5,5,0.7), var(--brand-dark)), url('cover.png') no-repeat center center/cover;
             background-attachment: fixed; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px;
         }
-        .hero-content h1 { font-size: 4rem; text-transform: uppercase; text-shadow: 2px 4px 8px rgba(0,0,0,0.8); margin-bottom: 10px; font-weight: 800;}
+        .hero-content h1 { font-size: 4rem; text-transform: uppercase; text-shadow: 2px 4px 8px rgba(0,0,0,0.8); margin-bottom: 10px; font-family: 'Lobster', cursive; letter-spacing: 3px; color: white;}
         .hero-content p { font-size: 1.5rem; color: var(--brand-gold); margin-bottom: 30px; letter-spacing: 2px; }
         
         .btn-primary {
@@ -97,11 +101,11 @@
         .menu-card { background: #222; border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,215,0,0.1); transition: 0.4s; position: relative; }
         .menu-card.hidden { display: none; }
         .menu-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--brand-red); }
-        .menu-img { height: 220px; width: 100%; object-fit: cover; transition: 0.5s; }
+        .menu-img { height: 220px; width: 100%; object-fit: cover; transition: 0.5s; background-color: #111;}
         .menu-card:hover .menu-img { transform: scale(1.05); }
         .menu-info { padding: 20px; }
         
-        .diet-tag { position: absolute; top: 15px; right: 15px; background: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold;}
+        .diet-tag { position: absolute; top: 15px; right: 15px; background: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; z-index: 10;}
         .veg-tag { color: #2ecc71; border: 2px solid #2ecc71; }
         .non-veg-tag { color: #e74c3c; border: 2px solid #e74c3c; }
         .spicy i { color: #e74c3c; }
@@ -138,20 +142,23 @@
         .footer-grid p, .footer-grid a { color: #888; margin-bottom: 10px; font-size: 0.95rem; display: block; transition: 0.3s;}
         .footer-grid a:hover { color: var(--brand-red); }
         .social-icons a { color: white; font-size: 1.5rem; margin-right: 15px; display: inline-block;}
+        .map-btn { display: inline-block; background: var(--brand-red); color: white !important; padding: 10px 20px; border-radius: 5px; font-weight: bold; margin-top: 10px; border: 1px solid var(--brand-red);}
+        .map-btn:hover { background: transparent; color: var(--brand-red) !important;}
 
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content h1 { font-size: 3rem; }
             .nav-links { display: none; }
             .menu-trigger { display: block; }
             .form-grid { grid-template-columns: 1fr; }
+            .logo { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="sidebar" id="sidebar">
-        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
-        <h2 class="logo" style="margin-bottom: 20px;">Navigation</h2>
+        <span class="close-btn" onclick="toggleSidebar()">×</span>
+        <h2 class="logo" style="margin-bottom: 20px;">The Dhaba Junction</h2>
         <ul class="sidebar-links">
             <li><a href="#home" onclick="toggleSidebar()"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="#about" onclick="toggleSidebar()"><i class="fas fa-info-circle"></i> Our Story</a></li>
@@ -179,7 +186,7 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 id="typewriter"></h1>
+            <h1 id="typewriter">The Dhaba Junction</h1>
             <p>Swad Jo Pyaar Jataye</p>
             <a href="#menu" class="btn-primary">Order Direct & Save</a>
         </div>
@@ -193,7 +200,7 @@
 
     <section id="about" class="about-section">
         <div class="about-content">
-            <h2 class="section-title" style="text-align: left;">Our Story</h2>
+            <h2 class="section-title" style="text-align: left; font-family: 'Poppins', sans-serif;">Our Story</h2>
             <p>Established in 1995, Dhaba Junction brings the authentic taste of roadside dhabas to the bustling streets of Karol Bagh, New Delhi. What started as a small eatery has grown into a beloved culinary destination for locals and food lovers.</p>
             <p>We pride ourselves on using traditional cooking methods, fresh ingredients, and recipes passed down through generations. Our clay oven (tandoor) and secret spice blends create flavors that transport you straight to the heart of Punjab.</p>
             <div class="about-stats">
@@ -215,7 +222,7 @@
     </section>
 
     <section id="menu" class="menu-section">
-        <h2 class="section-title">Signature Dishes</h2>
+        <h2 class="section-title" style="font-family: 'Poppins', sans-serif;">Signature Dishes</h2>
         
         <div class="filter-container">
             <button class="filter-btn active" onclick="filterMenu('all')">All Items</button>
@@ -227,60 +234,60 @@
             
             <div class="menu-card non-veg">
                 <div class="diet-tag non-veg-tag">🔴 NON-VEG</div>
-                <img src="chilli.jpg" alt="Chilli Chicken" class="menu-img">
+                <img src="kebab.jpg" alt="Mutton Seekh Kebab" class="menu-img">
                 <div class="menu-info">
-                    <h3>Chilli Chicken <span class="spicy"><i class="fas fa-pepper-hot"></i></span> <span class="price">₹280</span></h3>
-                    <p class="desc">Crispy chicken chunks wok-tossed in a spicy, tangy soy-garlic sauce.</p>
+                    <h3>Mutton Seekh Kebab <span class="spicy"><i class="fas fa-pepper-hot"></i></span> <span class="price">₹420</span></h3>
+                    <p class="desc">Juicy minced mutton blended with aromatic spices and char-grilled on skewers.</p>
                     <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
             <div class="menu-card veg">
                 <div class="diet-tag veg-tag">🟢 VEG</div>
-                <img src="paneer.jpg" alt="Butter Paneer" class="menu-img">
+                <img src="pasta.jpg" alt="Veg Arabiatta Pasta" class="menu-img">
                 <div class="menu-info">
-                    <h3>Butter Paneer <span class="price">₹260</span></h3>
-                    <p class="desc">Soft paneer cubes simmered in a rich, creamy, and mildly sweet tomato gravy.</p>
+                    <h3>Veg Arabiatta Pasta <span class="price">₹189</span></h3>
+                    <p class="desc">Penne pasta tossed in a spicy, tangy tomato sauce with fresh bell peppers and herbs.</p>
                     <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
             <div class="menu-card veg">
                 <div class="diet-tag veg-tag">🟢 VEG</div>
-                <img src="mushroom.jpg" alt="Mushroom Tikka" class="menu-img">
+                <img src="pizza.jpg" alt="Paneer Pizza" class="menu-img">
                 <div class="menu-info">
-                    <h3>Mushroom Tikka <span class="price">₹240</span></h3>
-                    <p class="desc">Fresh button mushrooms marinated in tandoori spices and char-grilled.</p>
+                    <h3>Paneer Tikka Pizza <span class="price">₹280</span></h3>
+                    <p class="desc">Fusion delight loaded with tandoori paneer cubes, mozzarella cheese, and desi spices.</p>
                     <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
             <div class="menu-card non-veg">
                 <div class="diet-tag non-veg-tag">🔴 NON-VEG</div>
-                <img src="rara.jpg" alt="Chicken Rara" class="menu-img">
+                <img src="curry.jpg" alt="Chicken Curry" class="menu-img">
                 <div class="menu-info">
-                    <h3>Chicken Rara <span class="spicy"><i class="fas fa-pepper-hot"></i><i class="fas fa-pepper-hot"></i></span> <span class="price">₹350</span></h3>
-                    <p class="desc">Bone-in chicken cooked in a rich, spicy minced chicken gravy.</p>
+                    <h3>Chicken Curry Combo <span class="spicy"><i class="fas fa-pepper-hot"></i><i class="fas fa-pepper-hot"></i></span> <span class="price">₹390</span></h3>
+                    <p class="desc">Tender chicken in a rich, spicy home-style gravy, served with rice and paratha.</p>
                     <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
             <div class="menu-card veg">
                 <div class="diet-tag veg-tag">🟢 VEG</div>
-                <img src="biryani.jpg" alt="Veg Biryani" class="menu-img">
+                <img src="dal.jpg" alt="Dal Makhani Platter" class="menu-img">
                 <div class="menu-info">
-                    <h3>Veg Biryani <span class="price">₹220</span></h3>
-                    <p class="desc">Fragrant basmati rice dum-cooked with fresh garden vegetables and whole spices.</p>
+                    <h3>Dhabha Special Dal <span class="price">₹319</span></h3>
+                    <p class="desc">Slow-cooked creamy black lentils served with fresh butter naan and onion salad.</p>
                     <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="menu-card veg">
-                <div class="diet-tag veg-tag">🟢 VEG</div>
-                <img src="naan.jpg" alt="Garlic Naan" class="menu-img">
+            <div class="menu-card non-veg">
+                <div class="diet-tag non-veg-tag">🔴 NON-VEG</div>
+                <img src="tikka.jpg" alt="Chicken Tikka" class="menu-img">
                 <div class="menu-info">
-                    <h3>Garlic Naan <span class="price">₹60</span></h3>
-                    <p class="desc">Soft, tandoor-baked Indian bread infused with freshly chopped garlic and butter.</p>
+                    <h3>Tandoori Chicken Tikka <span class="price">₹480</span></h3>
+                    <p class="desc">Boneless chicken chunks marinated in yogurt and traditional spices, roasted to perfection.</p>
                     <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
@@ -335,7 +342,7 @@
     <footer id="contact">
         <div class="footer-grid" style="padding: 0 5%;">
             <div>
-                <h2 style="color: var(--brand-gold); margin-bottom: 15px; text-transform: uppercase; font-weight: 800; font-size: 1.5rem;">The Dhaba Junction</h2>
+                <h2 class="logo" style="margin-bottom: 15px; font-size: 2rem;">The Dhaba Junction</h2>
                 <p>Delivering authentic North Indian flavors directly to your doorstep. No middlemen, just pure swad.</p>
                 <div class="social-icons" style="margin-top: 20px;">
                     <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -346,6 +353,7 @@
                 <h4>Visit Us</h4>
                 <p><i class="fas fa-map-marker-alt" style="color: var(--brand-red); width: 20px;"></i> 14A/22, Channa Market, WEA, Karol Bagh</p>
                 <p><i class="fas fa-clock" style="color: var(--brand-red); width: 20px;"></i> Open Everyday: 11:00 AM - 11:30 PM</p>
+                <a href="https://maps.google.com/?q=The+Dhaba+Junction+Karol+Bagh" target="_blank" class="map-btn"><i class="fas fa-directions"></i> Get Directions</a>
             </div>
             <div>
                 <h4>Quick Contact</h4>
@@ -383,21 +391,7 @@
             });
         }
 
-        // 3. Typewriter Effect
-        const text = "Real Swad. Zero Fees.";
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-        window.onload = function() {
-            setTimeout(typeWriter, 500);
-        };
-
-        // 4. Navbar Scroll Effect
+        // 3. Navbar Scroll Effect
         window.addEventListener('scroll', function() {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
