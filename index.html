@@ -3,36 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Dhaba Junction | Premium Dining</title>
+    <title>The Dhaba Junction | Premium Dining in Karol Bagh</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* --- 1. CORE STYLES & VARIABLES --- */
+        /* --- CORE STYLES & VARIABLES --- */
         :root {
             --brand-red: #b71c1c;
             --brand-dark: #1a0505;
             --brand-gold: #FFD700;
             --text-light: #f4f4f4;
-            --glass-bg: rgba(26, 5, 5, 0.8);
+            --glass-bg: rgba(26, 5, 5, 0.9);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--brand-dark); color: var(--text-light); }
+        body { font-family: 'Poppins', system-ui, sans-serif; background-color: var(--brand-dark); color: var(--text-light); overflow-x: hidden;}
         a { text-decoration: none; }
+        .section-title { text-align: center; font-size: 2.5rem; color: var(--brand-gold); margin-bottom: 40px; text-transform: uppercase; font-weight: 800;}
 
-        /* --- 2. GLASSMORPHISM NAVBAR --- */
+        /* --- SLIDE SIDEBAR --- */
+        .sidebar {
+            position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
+            background: #0a0202; border-right: 2px solid var(--brand-red);
+            z-index: 2000; transition: 0.4s; padding: 60px 30px;
+        }
+        .sidebar.active { left: 0; box-shadow: 20px 0 50px rgba(0,0,0,0.8); }
+        .sidebar-links { list-style: none; margin-top: 50px; }
+        .sidebar-links li { margin: 25px 0; }
+        .sidebar-links a { color: white; font-size: 1.1rem; text-transform: uppercase; font-weight: 600; transition: 0.3s;}
+        .sidebar-links a:hover { color: var(--brand-gold); }
+        .close-btn { position: absolute; top: 20px; right: 20px; font-size: 2rem; color: var(--brand-gold); cursor: pointer; }
+
+        /* --- GLASSMORPHISM NAVBAR --- */
         nav {
             position: fixed; width: 100%; top: 0; z-index: 1000;
             background: var(--glass-bg); backdrop-filter: blur(10px);
             padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid rgba(255,215,0,0.1);
-            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255,215,0,0.1); transition: all 0.3s ease;
         }
+        .menu-trigger { font-size: 1.5rem; color: var(--brand-gold); cursor: pointer; display: none; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--brand-gold); text-transform: uppercase; letter-spacing: 2px;}
         .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a { color: white; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--brand-gold); }
 
-        /* --- 3. LIVE STATUS BADGE --- */
         .status-badge {
             background: rgba(39, 174, 96, 0.2); color: #2ecc71;
             padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
@@ -41,66 +55,73 @@
         .status-dot { width: 8px; height: 8px; background: #2ecc71; border-radius: 50%; animation: blink 1.5s infinite; }
         @keyframes blink { 0% {opacity: 1;} 50% {opacity: 0.3;} 100% {opacity: 1;} }
 
-        /* --- 4. PARALLAX HERO SECTION --- */
+        /* --- PARALLAX HERO --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(to bottom, rgba(26,5,5,0.3), var(--brand-dark)), url('image_1.png') no-repeat center center/cover;
-            background-attachment: fixed;
-            display: flex; align-items: center; justify-content: center; text-align: center;
-            padding: 0 20px;
+            background: linear-gradient(to bottom, rgba(26,5,5,0.6), var(--brand-dark)), url('image_1.png') no-repeat center center/cover;
+            background-attachment: fixed; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px;
         }
-        .hero-content h1 { font-size: 4rem; text-transform: uppercase; text-shadow: 2px 4px 8px rgba(0,0,0,0.8); margin-bottom: 10px; }
+        .hero-content h1 { font-size: 4rem; text-transform: uppercase; text-shadow: 2px 4px 8px rgba(0,0,0,0.8); margin-bottom: 10px; font-weight: 800;}
         .hero-content p { font-size: 1.5rem; color: var(--brand-gold); margin-bottom: 30px; letter-spacing: 2px; }
         
-        /* --- 5. GLOWING CTA BUTTONS --- */
         .btn-primary {
             background: var(--brand-red); color: white; padding: 15px 35px; border-radius: 30px;
             font-size: 1.1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
-            box-shadow: 0 0 20px rgba(183, 28, 28, 0.5); transition: 0.3s; display: inline-block;
+            box-shadow: 0 0 20px rgba(183, 28, 28, 0.5); transition: 0.3s; display: inline-block; border: none; cursor: pointer;
         }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(183, 28, 28, 0.8); background: #d32f2f; }
 
-        /* --- 6. TRUST BAR --- */
-        .trust-bar {
-            display: flex; justify-content: space-around; background: #111; padding: 20px 5%;
-            border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        /* --- TRUST BAR --- */
+        .trust-bar { display: flex; justify-content: space-around; background: #111; padding: 20px 5%; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .trust-item { text-align: center; font-size: 0.9rem; color: #aaa; }
         .trust-item i { color: var(--brand-gold); font-size: 1.5rem; margin-bottom: 5px; display: block; }
 
-        /* --- 7. INTERACTIVE MENU GRID --- */
-        .section-title { text-align: center; font-size: 2.5rem; color: var(--brand-gold); margin: 60px 0 40px; text-transform: uppercase;}
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 5%; }
-        .menu-card {
-            background: #222; border-radius: 15px; overflow: hidden;
-            border: 1px solid rgba(255,215,0,0.1); transition: 0.4s; position: relative;
+        /* --- ABOUT US --- */
+        .about-section { padding: 80px 5%; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; background: #110303;}
+        .about-content { flex: 1; min-width: 300px; }
+        .about-content p { color: #ccc; line-height: 1.8; margin-bottom: 20px; }
+        .about-stats { display: flex; gap: 30px; margin-top: 30px; }
+        .stat-box { text-align: center; background: rgba(255,215,0,0.05); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,215,0,0.2); flex: 1;}
+        .stat-box i { font-size: 2rem; color: var(--brand-red); margin-bottom: 10px; }
+
+        /* --- MENU WITH FILTERS --- */
+        .menu-section { padding: 80px 0; }
+        .filter-container { text-align: center; margin-bottom: 40px; }
+        .filter-btn {
+            background: transparent; border: 1px solid var(--brand-gold); color: var(--brand-gold);
+            padding: 10px 25px; margin: 5px; cursor: pointer; border-radius: 25px; font-weight: bold; transition: 0.3s;
         }
+        .filter-btn.active, .filter-btn:hover { background: var(--brand-gold); color: var(--brand-dark); }
+
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 5%; }
+        .menu-card { background: #222; border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,215,0,0.1); transition: 0.4s; position: relative; }
+        .menu-card.hidden { display: none; }
         .menu-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--brand-red); }
-        .menu-img { height: 220px; width: 100%; object-fit: cover; transition: 0.5s; background-color: #333; }
+        .menu-img { height: 220px; width: 100%; object-fit: cover; transition: 0.5s; }
         .menu-card:hover .menu-img { transform: scale(1.05); }
         .menu-info { padding: 20px; }
         
-        /* --- 8 & 9. DIETARY & SPICY INDICATORS --- */
-        .diet-tag { position: absolute; top: 15px; right: 15px; background: white; padding: 5px; border-radius: 5px; font-size: 0.8rem; font-weight: bold;}
-        .veg { color: #2ecc71; border: 2px solid #2ecc71; }
-        .non-veg { color: #e74c3c; border: 2px solid #e74c3c; }
+        .diet-tag { position: absolute; top: 15px; right: 15px; background: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold;}
+        .veg-tag { color: #2ecc71; border: 2px solid #2ecc71; }
+        .non-veg-tag { color: #e74c3c; border: 2px solid #e74c3c; }
         .spicy i { color: #e74c3c; }
         
         .menu-info h3 { font-size: 1.3rem; margin-bottom: 5px; display: flex; justify-content: space-between;}
         .price { color: var(--brand-gold); font-weight: bold; }
         .desc { color: #aaa; font-size: 0.9rem; margin-bottom: 15px; }
-        .btn-add { background: transparent; border: 1px solid var(--brand-gold); color: var(--brand-gold); padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s; width: 100%; font-weight: bold;}
+        .btn-add { background: transparent; border: 1px solid var(--brand-gold); color: var(--brand-gold); padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s; width: 100%; font-weight: bold; text-transform: uppercase;}
         .btn-add:hover { background: var(--brand-gold); color: var(--brand-dark); }
 
-        /* --- 10. PARTY BOOKING FORM --- */
-        .booking-section { background: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1500&q=80') center/cover; padding: 80px 5%; position: relative; margin-top: 80px; }
-        .booking-overlay { position: absolute; inset: 0; background: rgba(26,5,5,0.85); }
-        .booking-form { position: relative; max-width: 600px; margin: 0 auto; background: rgba(0,0,0,0.6); padding: 40px; border-radius: 15px; border: 1px solid var(--brand-red); backdrop-filter: blur(5px); }
-        .input-group { margin-bottom: 20px; }
-        .input-group input, .input-group select { width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px; outline: none; }
-        .input-group input:focus { border-color: var(--brand-gold); }
+        /* --- ADVANCED BOOKING FORM --- */
+        .booking-section { background: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1500&q=80') center/cover; padding: 80px 5%; position: relative; }
+        .booking-overlay { position: absolute; inset: 0; background: rgba(26,5,5,0.9); }
+        .booking-form { position: relative; max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.7); padding: 40px; border-radius: 15px; border: 1px solid var(--brand-red); backdrop-filter: blur(5px); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;}
+        .input-group input, .input-group select { width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px; outline: none; font-family: 'Poppins', sans-serif;}
+        .input-group input:focus, .input-group select:focus { border-color: var(--brand-gold); }
+        .input-group select option { background: var(--brand-dark); color: white; }
 
-        /* --- 11. FLOATING WHATSAPP BUTTON --- */
+        /* --- FLOATING WHATSAPP BUTTON --- */
         .fab-whatsapp {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
             width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
@@ -110,29 +131,42 @@
         .fab-whatsapp:hover { transform: scale(1.1); background: #1ebe5d; }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
 
-        /* --- 12. FOOTER & MAP --- */
-        footer { background: #0a0202; padding: 50px 5% 20px; text-align: center; border-top: 2px solid var(--brand-red); margin-top: 80px;}
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; text-align: left; }
-        .footer-grid h4 { color: var(--brand-gold); margin-bottom: 15px; }
-        .footer-grid p { color: #888; margin-bottom: 10px; font-size: 0.9rem; }
-        .social-icons a { color: white; font-size: 1.5rem; margin-right: 15px; transition: 0.3s; }
-        .social-icons a:hover { color: var(--brand-red); }
+        /* --- FOOTER --- */
+        footer { background: #050101; padding: 60px 5% 20px; border-top: 2px solid var(--brand-red); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-grid h4 { color: var(--brand-gold); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;}
+        .footer-grid p, .footer-grid a { color: #888; margin-bottom: 10px; font-size: 0.95rem; display: block; transition: 0.3s;}
+        .footer-grid a:hover { color: var(--brand-red); }
+        .social-icons a { color: white; font-size: 1.5rem; margin-right: 15px; display: inline-block;}
 
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .booking-form { padding: 20px; }
+            .menu-trigger { display: block; }
+            .form-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <div class="sidebar" id="sidebar">
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+        <h2 class="logo" style="margin-bottom: 20px;">Navigation</h2>
+        <ul class="sidebar-links">
+            <li><a href="#home" onclick="toggleSidebar()"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about" onclick="toggleSidebar()"><i class="fas fa-info-circle"></i> Our Story</a></li>
+            <li><a href="#menu" onclick="toggleSidebar()"><i class="fas fa-utensils"></i> Menu</a></li>
+            <li><a href="#book" onclick="toggleSidebar()"><i class="fas fa-calendar-alt"></i> Book Table</a></li>
+        </ul>
+    </div>
+
     <nav id="navbar">
+        <div class="menu-trigger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
         <div class="logo">The Dhaba Junction</div>
         <ul class="nav-links">
+            <li><a href="#about">Story</a></li>
             <li><a href="#menu">Menu</a></li>
-            <li><a href="#catering">Catering</a></li>
-            <li><a href="#contact">Location</a></li>
+            <li><a href="#book">Reserve</a></li>
         </ul>
         <div class="status-badge">
             <div class="status-dot"></div> Open for Delivery
@@ -143,7 +177,7 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="hero-content">
             <h1 id="typewriter"></h1>
             <p>Swad Jo Pyaar Jataye</p>
@@ -157,140 +191,213 @@
         <div class="trust-item"><i class="fas fa-fire-burner"></i><br>100% Authentic</div>
     </div>
 
-    <section id="menu">
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2 class="section-title" style="text-align: left;">Our Story</h2>
+            <p>Established in 1995, Dhaba Junction brings the authentic taste of roadside dhabas to the bustling streets of Karol Bagh, New Delhi. What started as a small eatery has grown into a beloved culinary destination for locals and food lovers.</p>
+            <p>We pride ourselves on using traditional cooking methods, fresh ingredients, and recipes passed down through generations. Our clay oven (tandoor) and secret spice blends create flavors that transport you straight to the heart of Punjab.</p>
+            <div class="about-stats">
+                <div class="stat-box">
+                    <i class="fas fa-award"></i>
+                    <h4 style="color: white;">Award Winning</h4>
+                    <p style="font-size: 0.8rem; margin:0;">Best Local Dhaba</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-leaf"></i>
+                    <h4 style="color: white;">Fresh Spices</h4>
+                    <p style="font-size: 0.8rem; margin:0;">Daily Sourced</p>
+                </div>
+            </div>
+        </div>
+        <div style="flex: 1; min-width: 300px;">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Restaurant Vibe" style="width: 100%; border-radius: 15px; border: 2px solid var(--brand-red); box-shadow: 0 10px 30px rgba(183, 28, 28, 0.3);">
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
         <h2 class="section-title">Signature Dishes</h2>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterMenu('all')">All Items</button>
+            <button class="filter-btn" onclick="filterMenu('veg')">Veg Only</button>
+            <button class="filter-btn" onclick="filterMenu('non-veg')">Non-Veg Only</button>
+        </div>
+
         <div class="menu-grid">
             
-            <div class="menu-card">
-                <div class="diet-tag non-veg">🔴 Non-Veg</div>
+            <div class="menu-card non-veg">
+                <div class="diet-tag non-veg-tag">🔴 NON-VEG</div>
                 <img src="chilli.jpg" alt="Chilli Chicken" class="menu-img">
                 <div class="menu-info">
                     <h3>Chilli Chicken <span class="spicy"><i class="fas fa-pepper-hot"></i></span> <span class="price">₹280</span></h3>
                     <p class="desc">Crispy chicken chunks wok-tossed in a spicy, tangy soy-garlic sauce.</p>
-                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="menu-card">
-                <div class="diet-tag veg">🟢 Veg</div>
+            <div class="menu-card veg">
+                <div class="diet-tag veg-tag">🟢 VEG</div>
                 <img src="paneer.jpg" alt="Butter Paneer" class="menu-img">
                 <div class="menu-info">
                     <h3>Butter Paneer <span class="price">₹260</span></h3>
                     <p class="desc">Soft paneer cubes simmered in a rich, creamy, and mildly sweet tomato gravy.</p>
-                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="menu-card">
-                <div class="diet-tag veg">🟢 Veg</div>
+            <div class="menu-card veg">
+                <div class="diet-tag veg-tag">🟢 VEG</div>
                 <img src="mushroom.jpg" alt="Mushroom Tikka" class="menu-img">
                 <div class="menu-info">
-                    <h3>Roasted Mushroom Tikka <span class="price">₹240</span></h3>
+                    <h3>Mushroom Tikka <span class="price">₹240</span></h3>
                     <p class="desc">Fresh button mushrooms marinated in tandoori spices and char-grilled.</p>
-                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="menu-card">
-                <div class="diet-tag non-veg">🔴 Non-Veg</div>
+            <div class="menu-card non-veg">
+                <div class="diet-tag non-veg-tag">🔴 NON-VEG</div>
                 <img src="rara.jpg" alt="Chicken Rara" class="menu-img">
                 <div class="menu-info">
                     <h3>Chicken Rara <span class="spicy"><i class="fas fa-pepper-hot"></i><i class="fas fa-pepper-hot"></i></span> <span class="price">₹350</span></h3>
-                    <p class="desc">A flavor-packed double chicken delight: bone-in chicken cooked in spicy minced chicken gravy.</p>
-                    <button class="btn-add">Add to Cart</button>
+                    <p class="desc">Bone-in chicken cooked in a rich, spicy minced chicken gravy.</p>
+                    <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="menu-card">
-                <div class="diet-tag veg">🟢 Veg</div>
+            <div class="menu-card veg">
+                <div class="diet-tag veg-tag">🟢 VEG</div>
                 <img src="biryani.jpg" alt="Veg Biryani" class="menu-img">
                 <div class="menu-info">
                     <h3>Veg Biryani <span class="price">₹220</span></h3>
-                    <p class="desc">Fragrant basmati rice dum-cooked with fresh garden vegetables and aromatic whole spices.</p>
-                    <button class="btn-add">Add to Cart</button>
+                    <p class="desc">Fragrant basmati rice dum-cooked with fresh garden vegetables and whole spices.</p>
+                    <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
-            <div class="menu-card">
-                <div class="diet-tag veg">🟢 Veg</div>
+            <div class="menu-card veg">
+                <div class="diet-tag veg-tag">🟢 VEG</div>
                 <img src="naan.jpg" alt="Garlic Naan" class="menu-img">
                 <div class="menu-info">
                     <h3>Garlic Naan <span class="price">₹60</span></h3>
-                    <p class="desc">Soft, tandoor-baked Indian bread infused with freshly chopped garlic and coriander, finished with butter.</p>
-                    <button class="btn-add">Add to Cart</button>
+                    <p class="desc">Soft, tandoor-baked Indian bread infused with freshly chopped garlic and butter.</p>
+                    <button class="btn-add" onclick="alert('Added to Cart!')">Add to Cart</button>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section id="catering" class="booking-section">
+    <section id="book" class="booking-section">
         <div class="booking-overlay"></div>
         <div class="booking-form">
-            <h2 style="text-align: center; color: var(--brand-gold); margin-bottom: 20px; font-size: 2rem;">Host Your Party With Us</h2>
-            <p style="text-align: center; color: #ccc; margin-bottom: 30px;">Get exclusive rates for bulk orders and events in Karol Bagh.</p>
-            <form onsubmit="alert('Inquiry sent! We will contact you shortly.'); return false;">
-                <div class="input-group">
-                    <input type="text" placeholder="Your Name" required>
+            <h2 style="text-align: center; color: var(--brand-gold); margin-bottom: 20px; font-size: 2.2rem; font-weight: 800; text-transform: uppercase;">Book Your Table</h2>
+            <p style="text-align: center; color: #ccc; margin-bottom: 30px;">Reserve a spot for family dinners or events in Karol Bagh.</p>
+            
+            <form onsubmit="alert('Reservation Request Sent! We will call you to confirm.'); return false;">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" placeholder="Phone Number" required>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <input type="tel" placeholder="Phone Number" required>
+                
+                <div class="form-grid">
+                    <div class="input-group">
+                        <input type="date" required>
+                    </div>
+                    <div class="input-group">
+                        <select required>
+                            <option value="" disabled selected>Select Time</option>
+                            <option>Lunch (12:00 PM - 4:00 PM)</option>
+                            <option>Dinner (7:00 PM - 11:30 PM)</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="input-group">
+
+                <div class="input-group" style="margin-bottom: 20px;">
                     <select required>
-                        <option value="" disabled selected>Select Event Size</option>
-                        <option>10 - 20 People</option>
-                        <option>20 - 50 People</option>
-                        <option>50+ People</option>
+                        <option value="" disabled selected>Number of Guests</option>
+                        <option>2 People</option>
+                        <option>3 - 5 People</option>
+                        <option>6 - 10 People</option>
+                        <option>Large Party (10+)</option>
                     </select>
                 </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Request Quote</button>
+                
+                <button type="submit" class="btn-primary" style="width: 100%; border-radius: 5px;">Confirm Reservation</button>
             </form>
         </div>
     </section>
 
     <footer id="contact">
-        <div class="footer-grid">
+        <div class="footer-grid" style="padding: 0 5%;">
             <div>
-                <h2 style="color: var(--brand-gold); margin-bottom: 15px; text-transform: uppercase;">The Dhaba Junction</h2>
+                <h2 style="color: var(--brand-gold); margin-bottom: 15px; text-transform: uppercase; font-weight: 800; font-size: 1.5rem;">The Dhaba Junction</h2>
                 <p>Delivering authentic North Indian flavors directly to your doorstep. No middlemen, just pure swad.</p>
                 <div class="social-icons" style="margin-top: 20px;">
-                    <a href="https://www.instagram.com/thedhabajunction/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/thedhabajunction/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div>
                 <h4>Visit Us</h4>
-                <p><i class="fas fa-map-marker-alt" style="color: var(--brand-red);"></i> 14A/22, Channa Market, WEA, Karol Bagh</p>
-                <p><i class="fas fa-clock" style="color: var(--brand-red);"></i> Open Everyday: 11:00 AM - 11:30 PM</p>
-                <a href="https://maps.google.com/?q=The+Dhaba+Junction+Karol+Bagh" target="_blank" class="btn-add" style="display:inline-block; margin-top:10px; width:auto;">Get Directions</a>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--brand-red); width: 20px;"></i> 14A/22, Channa Market, WEA, Karol Bagh</p>
+                <p><i class="fas fa-clock" style="color: var(--brand-red); width: 20px;"></i> Open Everyday: 11:00 AM - 11:30 PM</p>
             </div>
             <div>
                 <h4>Quick Contact</h4>
-                <p><i class="fas fa-phone-alt" style="color: var(--brand-red);"></i> +91 70114 50697</p>
-                <p><i class="fas fa-envelope" style="color: var(--brand-red);"></i> orders@thedhabajunction.com</p>
+                <a href="tel:+917011450697"><i class="fas fa-phone-alt" style="color: var(--brand-red); width: 20px;"></i> +91 70114 50697</a>
+                <a href="mailto:orders@thedhabajunction.com"><i class="fas fa-envelope" style="color: var(--brand-red); width: 20px;"></i> orders@thedhabajunction.com</a>
             </div>
         </div>
-        <p style="color: #444; font-size: 0.8rem;">© 2024 The Dhaba Junction. Custom built for 0% commission ordering.</p>
+        <p style="text-align: center; color: #444; font-size: 0.8rem; border-top: 1px solid #222; padding-top: 20px; margin: 0 5%;">© 2024 The Dhaba Junction. Custom built for 0% commission ordering.</p>
     </footer>
 
     <script>
+        // 1. Sidebar Toggle Logic
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        // 2. Veg/Non-Veg Filter Logic
+        function filterMenu(category) {
+            const cards = document.querySelectorAll('.menu-card');
+            const btns = document.querySelectorAll('.filter-btn');
+            
+            // Update button styles
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.classList.remove('hidden');
+                } else if (card.classList.contains(category)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // 3. Typewriter Effect
         const text = "Real Swad. Zero Fees.";
         let i = 0;
-        const speed = 100; 
-
         function typeWriter() {
             if (i < text.length) {
                 document.getElementById("typewriter").innerHTML += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, speed);
+                setTimeout(typeWriter, 100);
             }
         }
-        
         window.onload = function() {
             setTimeout(typeWriter, 500);
         };
 
+        // 4. Navbar Scroll Effect
         window.addEventListener('scroll', function() {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -298,7 +405,7 @@
                 nav.style.background = 'rgba(10, 2, 2, 0.95)';
             } else {
                 nav.style.padding = '15px 5%';
-                nav.style.background = 'rgba(26, 5, 5, 0.8)';
+                nav.style.background = 'rgba(26, 5, 5, 0.9)';
             }
         });
     </script>
