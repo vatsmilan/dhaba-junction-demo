@@ -45,7 +45,7 @@
         .hero {
             height: 100vh;
             background: linear-gradient(to bottom, rgba(26,5,5,0.3), var(--brand-dark)), url('image_1.png') no-repeat center center/cover;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
             display: flex; align-items: center; justify-content: center; text-align: center;
             padding: 0 20px;
         }
@@ -76,17 +76,17 @@
             border: 1px solid rgba(255,215,0,0.1); transition: 0.4s; position: relative;
         }
         .menu-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--brand-red); }
-        .menu-img { height: 220px; width: 100%; object-fit: cover; transition: 0.5s; }
+        .menu-img { height: 220px; width: 100%; object-fit: cover; transition: 0.5s; background-color: #333; }
         .menu-card:hover .menu-img { transform: scale(1.05); }
         .menu-info { padding: 20px; }
         
         /* --- 8 & 9. DIETARY & SPICY INDICATORS --- */
-        .diet-tag { position: absolute; top: 15px; right: 15px; background: white; padding: 5px; border-radius: 5px; font-size: 0.8rem; }
+        .diet-tag { position: absolute; top: 15px; right: 15px; background: white; padding: 5px; border-radius: 5px; font-size: 0.8rem; font-weight: bold;}
         .veg { color: #2ecc71; border: 2px solid #2ecc71; }
         .non-veg { color: #e74c3c; border: 2px solid #e74c3c; }
         .spicy i { color: #e74c3c; }
         
-        .menu-info h3 { font-size: 1.4rem; margin-bottom: 5px; display: flex; justify-content: space-between;}
+        .menu-info h3 { font-size: 1.3rem; margin-bottom: 5px; display: flex; justify-content: space-between;}
         .price { color: var(--brand-gold); font-weight: bold; }
         .desc { color: #aaa; font-size: 0.9rem; margin-bottom: 15px; }
         .btn-add { background: transparent; border: 1px solid var(--brand-gold); color: var(--brand-gold); padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s; width: 100%; font-weight: bold;}
@@ -162,31 +162,61 @@
         <div class="menu-grid">
             
             <div class="menu-card">
-                <div class="diet-tag non-veg">🔴</div>
-                <img src="https://images.unsplash.com/photo-1603894584373-5ac82bea3d76?auto=format&fit=crop&w=600&q=80" alt="Butter Chicken" class="menu-img">
+                <div class="diet-tag non-veg">🔴 Non-Veg</div>
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqLb2quqVpoz3008vNB3AQHHos8VCrN8efCLA5OCTtNIjFlBERSIH5S8WLLMJ0Heg-6PLOUxfJfYP_gEqS6zZ45lCl1NTSTQt6Q5DDaX_OZGtQqBqno47vIh9gAbtW88ONqzZ6n=w172-h224-p-k-no" alt="Chilli Chicken" class="menu-img">
                 <div class="menu-info">
-                    <h3>Butter Chicken <span class="price">₹350</span></h3>
-                    <p class="desc">Rich, creamy tomato gravy with charcoal-smoked chicken tikka.</p>
+                    <h3>Chilli Chicken <span class="spicy"><i class="fas fa-pepper-hot"></i></span> <span class="price">₹280</span></h3>
+                    <p class="desc">Crispy chicken chunks wok-tossed in a spicy, tangy soy-garlic sauce.</p>
                     <button class="btn-add">Add to Cart</button>
                 </div>
             </div>
 
             <div class="menu-card">
-                <div class="diet-tag veg">🟢</div>
-                <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80" alt="Dal Makhani" class="menu-img">
+                <div class="diet-tag veg">🟢 Veg</div>
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer2OqCGmWTh6BJPK9lpJSmu7BFsijp64S_2G7lEuF2a9LTQ9JunM5791B-FCGv1SAe4kr87OK_8csg6ZKvAhIMu4qUhSo818fK51bIUIafCRZGDQEwz9TJGHtMNE5yLD1KHt-Vw=w172-h224-p-k-no" alt="Butter Paneer" class="menu-img">
                 <div class="menu-info">
-                    <h3>Dal Makhani Special <span class="price">₹280</span></h3>
-                    <p class="desc">Slow-cooked overnight with fresh cream and butter.</p>
+                    <h3>Butter Paneer <span class="price">₹260</span></h3>
+                    <p class="desc">Soft paneer cubes simmered in a rich, creamy, and mildly sweet tomato gravy.</p>
                     <button class="btn-add">Add to Cart</button>
                 </div>
             </div>
 
             <div class="menu-card">
-                <div class="diet-tag non-veg">🔴</div>
-                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80" alt="Mutton Curry" class="menu-img">
+                <div class="diet-tag veg">🟢 Veg</div>
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepPc-bE4HusntyhvG3dcldTW8dACYNwYuvglNAW2OcxVpTDCQLJqD11VvtT8dM64oW8ojkvrkd7JcRYuTzRQvxJeBp72cScnBDVMBfSWprWE87pMmJkvO_tKG893_QIUsTmDafM3A=w172-h224-p-k-no" alt="Mushroom Tikka" class="menu-img">
                 <div class="menu-info">
-                    <h3>Rara Mutton <span class="spicy"><i class="fas fa-pepper-hot"></i><i class="fas fa-pepper-hot"></i></span> <span class="price">₹450</span></h3>
-                    <p class="desc">Spicy minced mutton gravy with tender bone-in pieces.</p>
+                    <h3>Roasted Mushroom Tikka <span class="price">₹240</span></h3>
+                    <p class="desc">Fresh button mushrooms marinated in tandoori spices and char-grilled.</p>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="diet-tag non-veg">🔴 Non-Veg</div>
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepqKE7XIkheUWforYPE8W63UqRkxcffIgju1n15zp_R7e7VAcbHQYiaat08Req7fop7En1JS-8sBz7OkxNMEdT58tV5FcItupo4DYyMr6xOJCC-nIJan3vd64fnClPG6YHB4Oc=w172-h224-p-k-no" alt="Chicken Rara" class="menu-img">
+                <div class="menu-info">
+                    <h3>Chicken Rara <span class="spicy"><i class="fas fa-pepper-hot"></i><i class="fas fa-pepper-hot"></i></span> <span class="price">₹350</span></h3>
+                    <p class="desc">A flavor-packed double chicken delight: bone-in chicken cooked in spicy minced chicken gravy.</p>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="diet-tag veg">🟢 Veg</div>
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweq6BVzT4Sfn1DCbq07A3HkgFKYq1N3lcCB85GISnkQOwDlCvQT3eeSEJIXPr85LhWHOt-RhwYPHYsghde38d4yuXbn5cmpXNdMLkjL0f_aRQVKq50G8mZBmRlY80Q8YBP4hrB5K=w172-h224-p-k-no" alt="Veg Biryani" class="menu-img">
+                <div class="menu-info">
+                    <h3>Veg Biryani <span class="price">₹220</span></h3>
+                    <p class="desc">Fragrant basmati rice dum-cooked with fresh garden vegetables and aromatic whole spices.</p>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="diet-tag veg">🟢 Veg</div>
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqUF6-DchmSBHmFOMq_8Fs7FZcyTvuCZzt69ndTwj3L-ySsy9FQLe0zSsoDF-POZdJfb7UKFK6Y_DWgGCUVYcHFa0FJCAf9ycjXB3z-C6dWrmGleWEgSCVr--_cSYJAj1dV9EdcBQ=w172-h224-p-k-no" alt="Garlic Naan" class="menu-img">
+                <div class="menu-info">
+                    <h3>Garlic Naan <span class="price">₹60</span></h3>
+                    <p class="desc">Soft, tandoor-baked Indian bread infused with freshly chopped garlic and coriander, finished with butter.</p>
                     <button class="btn-add">Add to Cart</button>
                 </div>
             </div>
@@ -225,8 +255,8 @@
                 <h2 style="color: var(--brand-gold); margin-bottom: 15px; text-transform: uppercase;">The Dhaba Junction</h2>
                 <p>Delivering authentic North Indian flavors directly to your doorstep. No middlemen, just pure swad.</p>
                 <div class="social-icons" style="margin-top: 20px;">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/thedhabajunction/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/thedhabajunction/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div>
@@ -241,14 +271,13 @@
                 <p><i class="fas fa-envelope" style="color: var(--brand-red);"></i> orders@thedhabajunction.com</p>
             </div>
         </div>
-        <p style="color: #444; font-size: 0.8rem;">&copy; 2024 The Dhaba Junction. Custom built for 0% commission ordering.</p>
+        <p style="color: #444; font-size: 0.8rem;">© 2024 The Dhaba Junction. Custom built for 0% commission ordering.</p>
     </footer>
 
     <script>
-        // Feature 3: Typewriter Effect for Hero Section
         const text = "Real Swad. Zero Fees.";
         let i = 0;
-        const speed = 100; // Typing speed in milliseconds
+        const speed = 100; 
 
         function typeWriter() {
             if (i < text.length) {
@@ -258,12 +287,10 @@
             }
         }
         
-        // Start typewriter when window loads
         window.onload = function() {
             setTimeout(typeWriter, 500);
         };
 
-        // Navbar Scroll Effect (Shrinks and darkens on scroll)
         window.addEventListener('scroll', function() {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
